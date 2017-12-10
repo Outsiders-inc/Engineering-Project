@@ -1,0 +1,4 @@
+Took rather a long time. 
+Result:
+0.6923809288138064
+Not much of improvment.
