@@ -1,0 +1,32 @@
+
+%
+%
+% LEXICON YOC^EI DOFEN
+%
+%
+{erel.mila.NituximJlMilaAxt
+AXD: [10 erel.mila.Cura     AXD*M**LZYS*** AXD*M**LZYF*** AXD*E**LZYF*** AXD*T**LZYF AIXD*P*ZY2C]
+BAXD: [10 erel.mila.Cura    AXD*M*bLZYS*** AXD*M*bLZYF*** AXD*E*bLZYF*** AXD*E*bKZYF*** ]
+KAXD: [10 erel.mila.Cura    AXD*M*kLZYS*** AXD*M*kLZYF*** AXD*E*kLZYF*** AXD*E*kKZYF*** KAXD*t*]
+LAXD: [10 erel.mila.Cura    AXD*M*lLZYS*** AXD*M*lLZYF*** AXD*E*lLZYF*** AXD*E*lKZYF*** AIXD*P****M]
+MAXD: [10 erel.mila.Cura    AXD*M*mLZYS*** AXD*M*mLZYF*** AXD*E*mLZYF*** AXD*E*mKZYF*** AIXD*P*ZYAH]
+AXT: [10 erel.mila.Cura    AXD*M**LNYS*** AXD*M**LNYF*** AXD*E**LNYF*** AXD*T**LNYF ]
+HPNIM: [4 erel.mila.Cura    PN*E**KZRF*** PNIM*E**KZRF*** PNIM*E**KZYF*** HPNIM*P*ZY3V]
+BPNIM: [4 erel.mila.Cura    PN*E*bBZRF*** PNIM*E*bBZRF*** BPNIM*t*]
+KPNIM: [4 erel.mila.Cura    PN*E*kBZRF*** PNIM*E*kBZRF***]
+LPNIM: [4 erel.mila.Cura    PN*E*lBZRF*** PNIM*E*lBZRF*** LPNIM*t*]
+MPNIM: [4 erel.mila.Cura    PN*E*mBZRF*** PNIM*E*mBZRF***]
+MHPNIM: [4 erel.mila.Cura    PNIM*E*mKZYF*** PN*E*mKZRF*** PNIM*E*mKZRF***]
+NWRAIT: [4 erel.mila.Cura NWRA*T**LNYF NWRA*T**LNYS NWRAI*T**LNYF NWRAI*T**LNYS]
+RWCH: [6 erel.mila.Cura    RCI*z*ZYAH RCI*z*NYAH RCI*P*ZYAH RCI*P*NYAH RWCI*P*ZY3V]
+TRCH: [7 erel.mila.Cura    RCI*z*ZY2T RCI*z*NY3T RCI*P*ZY2T RCI*P*NY3T RICI*P*ZY2T RICI*P*NY3T TRCH*p**N ]
+
+TWKL: [4 erel.mila.Cura    IKWL*z*ZY2T IKWL*z*NY3T HWKL*P*ZY2T HWKL*P*NY3T]
+TWKLNH: [4 erel.mila.Cura    IKWL*z*NR2T IKWL*z*NR3T HWKL*P*NR2T HWKL*P*NR3T]
+
+MI: [4 erel.mila.Cura    MI*g**LBB3 MIM*E**LZRS***]
+BMI: [4 erel.mila.Cura    MI*g*bLBB3 MIM*E*bLZRS***]
+KMI: [2 erel.mila.Cura    MI*g*kLBB3 MIM*E*kLZRS***]
+LMI: [2 erel.mila.Cura    MI*g*lLBB3 MIM*E*lLZRS***]
+MMI: [2 erel.mila.Cura    MI*g*mLBB3 MIM*E*mLZRS***]
+}
