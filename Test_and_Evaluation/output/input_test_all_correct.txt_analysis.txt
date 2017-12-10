@@ -1,0 +1,11 @@
+>>> TOTAL : <<< 
+    ------      
+F_measure , Recall , Presicion 
+1.0 , 1.0 , 1.0
+
+>>> By Sentence : <<< 
+    ------------      
+F_measure , Recall , Precision 
+0) 1.0 , 1.0 , 1.0
+1) 1.0 , 1.0 , 1.0
+2) 1.0 , 1.0 , 1.0
