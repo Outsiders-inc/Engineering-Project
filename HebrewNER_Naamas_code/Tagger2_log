@@ -1,0 +1,25 @@
+Start reading compact data from file
+Finish loading compact data from file
+Start reading probablistic model from file
+Finish reading probablistic model from file
+Unknown token: ﻿$XR
+Adding tags of new token (﻿$XR) to the prob model
+Creating token tags distributor for new token, based on similar words map: data/swmap
+Start reading similar words map from file
+Finish successfully similar words map initializtion from file
+Adding tag ( unknown masculine and feminine) for new word (﻿$XR) to the prob model
+B.addNewWord: iWordIndex = 184803 logProb = 0.0, formattedProb = -10.140766030022133, logPrevSum = -0.47906667836189704, logOrigSum = 10.140766030022133, normal value = -6.367419440006516E-5
+Unknown token: W$TW
+Adding tags of new token (W$TW) to the prob model
+Adding tag ( conjunction subordinatingConjunction noun masculine singular absolute) for new word (W$TW) to the prob model
+B.addNewWord: iWordIndex = 184804 logProb = -Infinity, formattedProb = -Infinity, logPrevSum = -6.855809580894615, logOrigSum = 1.2699112101649497, normal value = 0.0
+Adding tag ( conjunction subordinatingConjunction noun masculine singular construct) for new word (W$TW) to the prob model
+B.addNewWord: iWordIndex = 184804 logProb = -Infinity, formattedProb = -Infinity, logPrevSum = -6.924928997269462, logOrigSum = 4.223356263277285, normal value = 0.0
+Adding tag ( conjunction verb masculine and feminine plural 3 past) for new word (W$TW) to the prob model
+B.addNewWord: iWordIndex = 184804 logProb = -Infinity, formattedProb = -Infinity, logPrevSum = -3.125149580427793, logOrigSum = 6.529152857260505, normal value = 0.0
+Adding tag ( conjunction verb masculine plural 2 imperative) for new word (W$TW) to the prob model
+B.addNewWord: iWordIndex = 184804 logProb = 0.0, formattedProb = -5.522192518571598, logPrevSum = -5.165478686551889, logOrigSum = 5.522192518571598, normal value = -0.5306122385060927
+Unknown token: BMIQRWSWP@
+Adding tags of new token (BMIQRWSWP@) to the prob model
+Adding tag ( preposition properName masculine and feminine) for new word (BMIQRWSWP@) to the prob model
+B.addNewWord: iWordIndex = 184805 logProb = 0.0, formattedProb = -7.783507968113663, logPrevSum = -1.8878492469909636, logOrigSum = 7.783507968113663, normal value = -0.0027475852929728095
