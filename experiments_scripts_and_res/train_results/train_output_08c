@@ -1,0 +1,54 @@
+CRF++: Yet Another CRF Tool Kit
+Copyright (C) 2005-2013 Taku Kudo, All rights reserved.
+
+reading training data: 100.. 200.. 300.. 400.. 500.. 600.. 700.. 800.. 900.. 1000.. 1100.. 1200.. 1300.. 1400.. 1500.. 1600.. 1700.. 1800.. 1900.. 2000.. 2100.. 2200.. 2300.. 2400.. 2500.. 2600.. 
+Done!0.17 s
+
+Number of sentences: 2647
+Number of features:  110
+Number of thread(s): 4
+Freq:                1
+eta:                 0.00010
+C:                   1.00000
+shrinking size:      20
+iter=0 terr=0.99404 serr=1.00000 act=110 obj=157272.24003 diff=1.00000
+iter=1 terr=0.13949 serr=0.70684 act=110 obj=134711.33967 diff=0.14345
+iter=2 terr=0.13949 serr=0.70684 act=110 obj=69070.41285 diff=0.48727
+iter=3 terr=0.13949 serr=0.70684 act=110 obj=43168.62330 diff=0.37501
+iter=4 terr=0.13949 serr=0.70684 act=110 obj=41194.48124 diff=0.04573
+iter=5 terr=0.13949 serr=0.70684 act=110 obj=39734.05570 diff=0.03545
+iter=6 terr=0.13949 serr=0.70684 act=110 obj=38872.02795 diff=0.02169
+iter=7 terr=0.13949 serr=0.70684 act=110 obj=38341.31435 diff=0.01365
+iter=8 terr=0.13949 serr=0.70684 act=110 obj=37405.32810 diff=0.02441
+iter=9 terr=0.13949 serr=0.70684 act=110 obj=37338.83283 diff=0.00178
+iter=10 terr=0.13949 serr=0.70684 act=110 obj=37015.08481 diff=0.00867
+iter=11 terr=0.13949 serr=0.70684 act=110 obj=36877.10575 diff=0.00373
+iter=12 terr=0.13949 serr=0.70684 act=110 obj=36767.52949 diff=0.00297
+iter=13 terr=0.13949 serr=0.70684 act=110 obj=36651.49796 diff=0.00316
+iter=14 terr=0.13949 serr=0.70684 act=110 obj=36588.68257 diff=0.00171
+iter=15 terr=0.13949 serr=0.70684 act=110 obj=36518.76426 diff=0.00191
+iter=16 terr=0.13949 serr=0.70684 act=110 obj=36489.39443 diff=0.00080
+iter=17 terr=0.13949 serr=0.70684 act=110 obj=36456.20663 diff=0.00091
+iter=18 terr=0.13949 serr=0.70684 act=110 obj=36447.25293 diff=0.00025
+iter=19 terr=0.13949 serr=0.70684 act=110 obj=36423.79558 diff=0.00064
+iter=20 terr=0.13949 serr=0.70684 act=110 obj=36414.89465 diff=0.00024
+iter=21 terr=0.13949 serr=0.70684 act=110 obj=36402.02848 diff=0.00035
+iter=22 terr=0.13949 serr=0.70684 act=110 obj=36382.41449 diff=0.00054
+iter=23 terr=0.13949 serr=0.70684 act=110 obj=36479.09840 diff=0.00266
+iter=24 terr=0.13949 serr=0.70684 act=110 obj=36375.64442 diff=0.00284
+iter=25 terr=0.13949 serr=0.70684 act=110 obj=36361.62112 diff=0.00039
+iter=26 terr=0.13949 serr=0.70684 act=110 obj=36354.83938 diff=0.00019
+iter=27 terr=0.13949 serr=0.70684 act=110 obj=36351.29873 diff=0.00010
+iter=28 terr=0.13949 serr=0.70684 act=110 obj=36345.87295 diff=0.00015
+iter=29 terr=0.13949 serr=0.70684 act=110 obj=36343.30987 diff=0.00007
+iter=30 terr=0.13949 serr=0.70684 act=110 obj=36339.33474 diff=0.00011
+iter=31 terr=0.13949 serr=0.70684 act=110 obj=36334.43580 diff=0.00013
+iter=32 terr=0.13949 serr=0.70684 act=110 obj=36345.93467 diff=0.00032
+iter=33 terr=0.13949 serr=0.70684 act=110 obj=36332.18280 diff=0.00038
+iter=34 terr=0.13949 serr=0.70684 act=110 obj=36328.41292 diff=0.00010
+iter=35 terr=0.13949 serr=0.70684 act=110 obj=36325.63678 diff=0.00008
+iter=36 terr=0.13949 serr=0.70684 act=110 obj=36322.82942 diff=0.00008
+iter=37 terr=0.13949 serr=0.70684 act=110 obj=36321.73098 diff=0.00003
+
+Done!45.41 s
+

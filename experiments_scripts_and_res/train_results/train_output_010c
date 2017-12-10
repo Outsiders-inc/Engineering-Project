@@ -1,0 +1,43 @@
+CRF++: Yet Another CRF Tool Kit
+Copyright (C) 2005-2013 Taku Kudo, All rights reserved.
+
+reading training data: 100.. 200.. 300.. 400.. 500.. 600.. 700.. 800.. 900.. 1000.. 1100.. 1200.. 1300.. 1400.. 1500.. 1600.. 1700.. 1800.. 1900.. 2000.. 2100.. 2200.. 2300.. 2400.. 2500.. 
+Done!0.16 s
+
+Number of sentences: 2593
+Number of features:  88
+Number of thread(s): 4
+Freq:                1
+eta:                 0.00010
+C:                   1.00000
+shrinking size:      20
+iter=0 terr=0.99405 serr=1.00000 act=88 obj=153674.26661 diff=1.00000
+iter=1 terr=0.13875 serr=0.69572 act=88 obj=131674.42203 diff=0.14316
+iter=2 terr=0.13875 serr=0.69572 act=88 obj=64743.99327 diff=0.50830
+iter=3 terr=0.13875 serr=0.69572 act=88 obj=41770.68410 diff=0.35483
+iter=4 terr=0.13875 serr=0.69572 act=88 obj=39963.67024 diff=0.04326
+iter=5 terr=0.13875 serr=0.69572 act=88 obj=38155.61275 diff=0.04524
+iter=6 terr=0.13875 serr=0.69572 act=88 obj=37439.37046 diff=0.01877
+iter=7 terr=0.13875 serr=0.69572 act=88 obj=36915.45910 diff=0.01399
+iter=8 terr=0.13875 serr=0.69572 act=88 obj=36102.48957 diff=0.02202
+iter=9 terr=0.13875 serr=0.69572 act=88 obj=35679.00015 diff=0.01173
+iter=10 terr=0.13875 serr=0.69572 act=88 obj=35533.24135 diff=0.00409
+iter=11 terr=0.13875 serr=0.69572 act=88 obj=35462.27641 diff=0.00200
+iter=12 terr=0.13875 serr=0.69572 act=88 obj=35366.59537 diff=0.00270
+iter=13 terr=0.13875 serr=0.69572 act=88 obj=35309.67735 diff=0.00161
+iter=14 terr=0.13875 serr=0.69572 act=88 obj=35276.91822 diff=0.00093
+iter=15 terr=0.13875 serr=0.69572 act=88 obj=35219.52476 diff=0.00163
+iter=16 terr=0.13875 serr=0.69572 act=88 obj=35192.40959 diff=0.00077
+iter=17 terr=0.13875 serr=0.69572 act=88 obj=35162.64866 diff=0.00085
+iter=18 terr=0.13875 serr=0.69572 act=88 obj=35135.20910 diff=0.00078
+iter=19 terr=0.13875 serr=0.69572 act=88 obj=35119.31838 diff=0.00045
+iter=20 terr=0.13875 serr=0.69572 act=88 obj=35114.64296 diff=0.00013
+iter=21 terr=0.13875 serr=0.69572 act=88 obj=35097.21801 diff=0.00050
+iter=22 terr=0.13875 serr=0.69572 act=88 obj=35094.58163 diff=0.00008
+iter=23 terr=0.13875 serr=0.69572 act=88 obj=35089.48588 diff=0.00015
+iter=24 terr=0.13875 serr=0.69572 act=88 obj=35088.69254 diff=0.00002
+iter=25 terr=0.13875 serr=0.69572 act=88 obj=35085.66311 diff=0.00009
+iter=26 terr=0.13875 serr=0.69572 act=88 obj=35084.05744 diff=0.00005
+
+Done!30.50 s
+
