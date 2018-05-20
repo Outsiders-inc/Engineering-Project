@@ -1,0 +1,19 @@
+>>> TOTAL : <<< 
+    ------      
+F_measure , Recall , Presicion 
+1.0 , 1.0 , 1.0
+
+>>> By Type : <<< 
+    ---------      
+F_measure , Recall , Precision 
+PERS) 1.0 , 1.0 , 1.0
+ORG) 1.0 , 1.0 , 1.0
+LOC) 0 , 0 , 0
+DATE) 1.0 , 1.0 , 1.0
+PERCENT) 0 , 0 , 0
+MONEY) 0 , 0 , 0
+TIME) 0 , 0 , 0
+MISC_AFF) 1.0 , 1.0 , 1.0
+MISC_EVENT) 0 , 0 , 0
+MISC_ENT) 0 , 0 , 0
+MISC_MODEL) 0 , 0 , 0
