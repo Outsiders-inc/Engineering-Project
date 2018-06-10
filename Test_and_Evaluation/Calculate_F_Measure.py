@@ -19,6 +19,7 @@ _total_recall = 0
 _total_precision = 0
 _total_F_measure = 0
 
+tag_counts_file_name = "output/tags_counts_file.txt"
 
 # Takes the tag_origin'th element in each word in the sentence and return a list comprised only of those elements.
 def create_tag_list_by(sentence, tag_origin):
@@ -287,6 +288,10 @@ def run_analysis(file_to_analyze):
     F_measure, recall, precision = calculate_F_measure(gold_sentences, pred_sentences)
     _F_by_type, _recall_by_type, _precision__by_type = calculte_F_measure_by_tag(gold_sentences, pred_sentences)
 
+    # Opening the tag count file, to add this information to our results file:
+    tag_count_file = open(tag_counts_file_name, 'r', encoding="utf-8")
+    tag_count_list = tag_count_file.readlines()
+
     # Write to file
     # current_time = str(datetime.now())
     current_time = datetime.now().strftime('%Y-%m-%d_%H_%M_%S')
@@ -303,7 +308,8 @@ def run_analysis(file_to_analyze):
     res.write("F_measure , Recall , Precision \n")
     for type in TAG_TYPES.keys():
         res.write(type + ") " + str(_F_by_type[TAG_TYPES[type]]) + " , " + str(_recall_by_type[TAG_TYPES[type]])
-                  + " , " + str(_precision__by_type[TAG_TYPES[type]]) + "\n")
+                  + " , " + str(_precision__by_type[TAG_TYPES[type]]) + " out of " + tag_count_list[TAG_TYPES[type]]
+                  + " " + type + " that exist in the corpus" "\n")
     res.close()
     return res_file_name
 
