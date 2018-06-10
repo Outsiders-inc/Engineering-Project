@@ -94,16 +94,24 @@ if __name__ == '__main__':
     res.write("\n")
     res.write("     Tag-types    )   # Occurrences  /    Tag-NE Ratio  \n")
     res.write("    ------------------------------------------------------     \n")
-    for type in TAG_TYPES.keys():
-        res.write(type + "  ) " + str(tags_counter[TAG_TYPES[type]]) + " ,  " + str(tag_to_tags_ratio[TAG_TYPES[type]])
-                   + "\n")
+    tag_type_list = list(TAG_TYPES)
+    for i, tagType in enumerate(tag_type_list):
+        res.write(tagType + "  ) " + str(tags_counter[i]) + " ,  " + str(tag_to_tags_ratio[i])
+                  + "\n")
+    # for type in TAG_TYPES.keys():
+    #     res.write(type + "  ) " + str(tags_counter[TAG_TYPES[type]]) + " ,  " + str(tag_to_tags_ratio[TAG_TYPES[type]])
+    #                + "\n")
     res.close()
 
-
     counts = open(tag_counts_file_name, 'w', encoding="utf-8")
-    for type in TAG_TYPES.keys():
-        if TAG_TYPES[type] == 0:
-            counts.write(str(tags_counter[TAG_TYPES[type]]))
+    for i, tagType in enumerate(tag_type_list):
+        if i == 0:
+            counts.write(str(tags_counter[i]))
         else:
-            counts.write("\n" + str(tags_counter[TAG_TYPES[type]]))
+            counts.write("\n" + str(tags_counter[i]))
+    # for type in TAG_TYPES.keys():
+    #     if TAG_TYPES[type] == 0:
+    #         counts.write(str(tags_counter[TAG_TYPES[type]]))
+    #     else:
+    #         counts.write("\n" + str(tags_counter[TAG_TYPES[type]]))
     counts.close()
