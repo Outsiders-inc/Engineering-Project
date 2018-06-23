@@ -1,8 +1,9 @@
 CORP_NAME = "organized_corp"
-CURRENT_CORP = CORP_NAME + ".txt"
 NEW_NAME_SUF = "_new_feature.txt"
+FILE_SUF = ".txt"
+CURRENT_CORP = CORP_NAME + FILE_SUF
 NEW_LINE = "\n"
-NEW_SPOT = 2
+NEW_SPOT = 1
 SEP = "\t\t"
 
 PUNCT_OR_WORD = 2
