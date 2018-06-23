@@ -32,6 +32,24 @@ def add_feature(corpus_file_name, corpus_name, feature_values):
 #     feature = ["1" for i in corp.readlines()]
 # add_feature(CURRENT_CORP, CORP_NAME, feature)
 
+# In case we want to edit a feature we can remove it first using feature coulomb number
+def remove_feature(corpus_file_name, new_name, feature_number):
+    with open(corpus_file_name, "r", encoding="utf-8") as corp:
+        lines = corp.readlines()
+    new_corp = []
+    for i, line in enumerate(lines):
+        new_line = NEW_LINE
+        if line != NEW_LINE:
+            words = line.split(SEP)
+            # words.remove()
+            # print(words)
+            del words[feature_number]
+            # print(words)
+            new_line = SEP.join(words)
+        new_corp.append(new_line)
+    with open(new_name + FILE_SUF, "w", encoding="utf-8") as corp:
+        corp.writelines(new_corp)
+
 
 # Structure features- begin of sentence
 def is_begin_feat(corpus_file_name):
@@ -171,6 +189,100 @@ def is_wikipedia_location_bigram_feature(corpus_file_name, wiki_location_file_na
                         is_wiki_loc[index] = "1"
                         print(word_tuple + " - 1")  # TODO - DELETE
                         break
+# Building a Node list out of the Wiki dictionary
+class SetList:
+    def __init__(self, word="root"):
+        self.word = word
+        self.children = []
+
+    def __repr__(self):
+        return self.word
+
+    def search(self, word):
+        for child in self.children:
+            if word == child.word:
+                return child
+        return False
+
+    def search_arr(self, word_array):
+        for word in word_array:
+            child = self.search(word)
+            if child:
+                return child
+        return False
+
+    def add_child(self, name):
+        child = self.search(name)
+        if not child:
+            node = SetList(name)
+            self.children.append(node)
+            return node
+        return child
+
+    def is_leaf(self):
+        return len(self.children) == 0
+
+    def print_tree(self, tab_number=0):
+        print("\t" * tab_number + self.__repr__())
+        for child in self.children:
+            child.print_tree(tab_number + 1)
+
+
+def create_wiki_tree(file_name):
+    with open(file_name, "r", encoding="utf8") as doc:
+        lines = doc.readlines()
+    tree = SetList()
+    for line in lines:
+        words = line.strip("\n").strip(SEP).split(" ")
+        new_node = tree.add_child(words[0])
+        words = words[1:]
+        for word in words:
+            new_node = new_node.add_child(word)
+    return tree
+
+
+def is_in_wiki_tree_feat(corpus_file_name, wiki_dic_name):
+    tree = create_wiki_tree(wiki_dic_name)
+    feat = []
+    current_tree = tree
+    tree_length = 0
+    found_trees = 0
+    with open(corpus_file_name, "r", encoding="utf8") as corp:
+        for line in corp:
+            if line == NEW_LINE:
+                current_tree = tree
+                feat.append("0")
+                for i in range(tree_length):
+                    feat.append("0")
+                tree_length = 0
+                continue
+            words = line.split(SEP)
+            current_word = words[1].strip()
+            variations = create_words_from_delimiter(current_word)
+            variations.append(words[0].strip())
+            is_tree = current_tree.search_arr(variations)
+            if not is_tree:
+                for i in range(tree_length):
+                    feat.append("0")
+                tree_length = 0
+                current_tree = tree
+                # Maybe the word is a new root
+                is_tree = current_tree.search_arr(variations)
+            if is_tree:
+                if is_tree.is_leaf():
+                    found_trees += 1
+                    current_tree = tree
+                    feat.append("1")
+                    for i in range(tree_length):
+                        feat.append("1")
+                    tree_length = 0
+                else:
+                    current_tree = is_tree
+                    tree_length += 1
+            else:
+                feat.append("0")
+    print("Found: " + str(found_trees) + " trees total")
+    return feat
 
 
 if __name__ == '__main__':
