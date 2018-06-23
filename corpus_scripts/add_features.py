@@ -81,32 +81,36 @@ def is_end_feat(corpus_file_name):
 
 # Dictionary feature - number of occurrences as a name in Wikipedia's person list
 def appearances_wikipedia_person_feature(corpus_file_name, wiki_persons_file_name):
+    words_variations = []
     with open(corpus_file_name, "r", encoding="utf-8") as corp:
-        lines = corp.readlines()
-    words = list(map(lambda s: s.split("\t")[0], lines))
-
-    # for word in words: # TODO Delete
-    #     print(word) # TODO Delete
-
+        for line in corp:
+            if line != NEW_LINE:
+                words = line.split(SEP)
+                variations = create_words_from_delimiter(words[1])
+                words_variations.append([words[0]] + variations)
+            else:
+                words_variations.append([line])
+        # lines = corp.readlines()
+    # words = list(map(lambda s: s.split(SEP)[0], lines))
+    # print(words_variations)
     with open(wiki_persons_file_name, "r", encoding="utf-8") as wiki:
-        wikiLines = wiki.readlines()
-    wikiLinesStripped = list(map(lambda s: s.strip("\n").strip("\t"), wikiLines))
-    wikiWordsList = []
-    for line in wikiLinesStripped:
-        wikiWordsList += line.split(" ")
-    # for word in wikiWordsList: # TODO Delete
-    #     print(word) # TODO Delete
-
-    occurrences = ["0"] * len(lines)
-    for index, word in enumerate(words):
+        wiki_lines = wiki.readlines()
+    wiki_lines_stripped = list(map(lambda s: s.strip("\n").strip("\t"), wiki_lines))
+    wiki_words_list = []
+    for line in wiki_lines_stripped:
+        wiki_words_list += line.split(" ")
+    occurrences = ["0"] * len(words_variations)
+    for index, word_arr in enumerate(words_variations):
         counter = 0
-        for wiki_word in wikiWordsList:
-            if word == wiki_word:
+        for wiki_word in wiki_words_list:
+            if wiki_word in word_arr:
                 counter += 1
         occurrences[index] = str(counter)
-        # print(word + " - " + str(counter)) # TODO Delete
+    # Checking which words got a positive counter
+    for i, occ in enumerate(occurrences):
+        if occ != "0":
+            print(words_variations[i])
 
-    add_feature(corpus_file_name, corpus_file_name, occurrences)
 
 
 # Dictionary feature - is name in Wikipedia's person list (as unigram)
