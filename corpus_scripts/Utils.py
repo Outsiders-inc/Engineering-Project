@@ -45,30 +45,21 @@ import math
 # dIFFERENT VERSION:
 import copy
 
-# link : http://code.activestate.com/recipes/496807-list-of-all-combination-from-multiple-lists/
-def create_words_from_delimiter(word, delimiter):
+# For wiki features we want to search all forms in base form of words
+def create_words_from_delimiter(word, delimiter="&"):
     bad_inputs = ["\n", " ", "", ".", ",", "-", ":"]
     if len(word) == 0 or word in bad_inputs:
         return [word]
-
     # Finding all the occurrences of the delimiter in the word
     delim_indices = list(map(int, [m.start() for m in re.finditer(delimiter, word)]))
-    num_of_delims = len(delim_indices)
-    power_set_delim = int(math.pow(2, num_of_delims))
-    # result = [""] * power_set_delim
+    if len(delim_indices) == 0:
+        return [word]
     l1 = word.split(delimiter)
-    print("l1:")  # TODO DELETE
-    print(l1)  # TODO DELETE
     l2 = [x[0:-1] for x in l1]
     l2[-1] = copy.deepcopy(l1[-1])
-    print("l2:")    # TODO DELETE
-    print (l2)     # TODO DELETE
     if delim_indices[-1] == len(word) - 1:
         l1.pop()
         l2.pop()
-        print("After deleting the last empty delimiter (since he was the las letter). l1 / l2 :")  # TODO DELETE
-        print(l1)  # TODO DELETE
-        print(l2)  # TODO DELETE
     all_lists = []
     for i in range(len(l1)):
         all_lists.append([l1[i], l2[i]])
