@@ -1,4 +1,5 @@
 from datetime import datetime
+from Test_and_Evaluation.source_code.Check_Tags_Ratio import check_tags_ratio_for_resut_file
 
 # CRF+ result-file locations:
 from builtins import print
@@ -289,8 +290,9 @@ def run_analysis(file_to_analyze):
     _F_by_type, _recall_by_type, _precision__by_type = calculte_F_measure_by_tag(gold_sentences, pred_sentences)
 
     # Opening the tag count file, to add this information to our results file:
-    tag_count_file = open(tag_counts_file_name, 'r', encoding="utf-8")
-    tag_count_list = tag_count_file.readlines()
+    # tag_count_file = open(tag_counts_file_name, 'r', encoding="utf-8")
+    # tag_count_list = tag_count_file.readlines()
+    tag_count_list = tag_counts_file_name(file_to_analyze)
 
     # Write to file
     # current_time = str(datetime.now())
