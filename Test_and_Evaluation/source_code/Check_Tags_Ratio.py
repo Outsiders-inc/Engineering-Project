@@ -61,6 +61,34 @@ def check_tags_ratio(tag_list, expressions_list):
     return [tag_to_tags_ratio, tags_counter_list]
 
 
+# A variation of the original function - meant to be used in real time in order for the ratios
+#   to go in the results files.
+# returns:
+#   tag_to_tags_ratio - The ratio of each tag type in relation to number of NEs in the input list.
+#   tag_to_words_ratio - The ratio of each tag type in relation to total number of WORDS in the input list.
+def check_tags_ratio_for_resut_file(corpus_file_name):
+    tag_list = create_tag_list(corpus_file_name)
+    expressions_list = convert_tag_list_to_expressions_list(tag_list)
+
+    tags_counter_list = [0] * len(TAG_TYPES)
+    num_of_words = len(tag_list)
+    num_of_NE = 0
+
+    for expr in expressions_list:
+        num_of_NE += 1
+        if expr in TAG_TYPES:
+            # print (expr) # DELETE
+            tags_counter_list[TAG_TYPES[expr]] += 1
+
+    tag_to_tags_ratio = [x / num_of_NE for x in tags_counter_list]
+    # tag_to_words_ratio = [x / num_of_words for x in tags_counter_list]
+
+    tags_counter = []
+    for i, tagType in enumerate(tag_type_list):
+            tags_counter.append(str(tags_counter_list[i]))
+
+    return tags_counter
+
 
 
 #
@@ -115,3 +143,8 @@ if __name__ == '__main__':
     #     else:
     #         counts.write("\n" + str(tags_counter[TAG_TYPES[type]]))
     counts.close()
+
+
+
+
+
