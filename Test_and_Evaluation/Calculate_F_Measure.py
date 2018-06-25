@@ -1,5 +1,5 @@
 from datetime import datetime
-from Test_and_Evaluation.source_code.Check_Tags_Ratio import check_tags_ratio_for_resut_file
+from Test_and_Evaluation.source_code.Check_Tags_Ratio import check_tags_ratio_for_result_file
 
 # CRF+ result-file locations:
 from builtins import print
@@ -197,7 +197,9 @@ def calculte_F_measure_by_tag(gold_sentences, pred_sentences):
     # gold_names_list = []
     # pred_names_list = []
     # Calculating Recall and Precision for each tag type:
-    for tag_type in TAG_TYPES.keys():
+    tag_type_list = sorted(TAG_TYPES, key=TAG_TYPES.get, reverse=False)
+    # for tag_type in TAG_TYPES.keys():
+    for tag_type in tag_type_list:
         gold_names_list = []
         pred_names_list = []
         print("for loop, now on " + tag_type)  # TODO DELETE !!!!-----------------
@@ -280,11 +282,11 @@ def run_analysis(file_to_analyze):
     if not end_of_file:
         exit("ERROR!! DID NOT REACH END OF FILE!")
 
-    # Delete the following:
-    print("gold sentences:")    # TODO - Delete all of these prints
-    print(gold_sentences)
-    print("pres sentences:")
-    print(pred_sentences)
+    # # Delete the following:
+    # print("gold sentences:")    # TODO - Delete all of these prints
+    # print(gold_sentences)
+    # print("pres sentences:")
+    # print(pred_sentences)
 
     F_measure, recall, precision = calculate_F_measure(gold_sentences, pred_sentences)
     _F_by_type, _recall_by_type, _precision__by_type = calculte_F_measure_by_tag(gold_sentences, pred_sentences)
@@ -292,7 +294,7 @@ def run_analysis(file_to_analyze):
     # Opening the tag count file, to add this information to our results file:
     # tag_count_file = open(tag_counts_file_name, 'r', encoding="utf-8")
     # tag_count_list = tag_count_file.readlines()
-    tag_count_list = tag_counts_file_name(file_to_analyze)
+    tag_count_list = check_tags_ratio_for_result_file(file_to_analyze)
 
     # Write to file
     # current_time = str(datetime.now())
@@ -308,10 +310,16 @@ def run_analysis(file_to_analyze):
     res.write(">>> By Type : <<< \n")
     res.write("    ---------      \n")
     res.write("F_measure , Recall , Precision \n")
-    for type in TAG_TYPES.keys():
-        res.write(type + ") " + str(_F_by_type[TAG_TYPES[type]]) + " , " + str(_recall_by_type[TAG_TYPES[type]])
-                  + " , " + str(_precision__by_type[TAG_TYPES[type]]) + " out of " + tag_count_list[TAG_TYPES[type]]
-                  + " " + type + " that exist in the corpus" "\n")
+    tag_type_list = sorted(TAG_TYPES, key=TAG_TYPES.get, reverse=False)
+    for i, tagType in enumerate(tag_type_list):
+        res.write(tagType + ") " + str(_F_by_type[i]) + " , " + str(_recall_by_type[i])
+                  + " , " + str(_precision__by_type[i]) + " out of " + tag_count_list[i]
+                  + " " + tagType + " that exist in the corpus" "\n")
+
+    # for type in TAG_TYPES.keys():
+    #     res.write(type + ") " + str(_F_by_type[TAG_TYPES[type]]) + " , " + str(_recall_by_type[TAG_TYPES[type]])
+    #               + " , " + str(_precision__by_type[TAG_TYPES[type]]) + " out of " + tag_count_list[TAG_TYPES[type]]
+    #               + " " + type + " that exist in the corpus" "\n")
     res.close()
     return res_file_name
 
@@ -379,20 +387,23 @@ def run_analysis(file_to_analyze):
 
 
 if __name__ == '__main__':
-    # for each input file:
-    files_to_test = []
-    # For a test
-    files_to_test.append("input/input_test_all_correct.txt")
-    files_to_test.append("input/input_test_2_missing.txt")
-    files_to_test.append("input/input_test_3_incorrect.txt")
-    files_to_test.append("input/input_test_4_spurious.txt")
-    files_to_test.append("input/input_test_5_misc.txt")
-    files_to_test.append("input/input_test_6_misc.txt")
-    #
-    for file in files_to_test:
-        print("Starting the program for file: " + file)
-        run_analysis(file)
-        # run_analysis_old(file)
+    run_analysis("input/manual_output_test_for_evaluation_gil")
+
+
+    # # for each input file:
+    # files_to_test = []
+    # # For a test
+    # files_to_test.append("input/input_test_all_correct.txt")
+    # files_to_test.append("input/input_test_2_missing.txt")
+    # files_to_test.append("input/input_test_3_incorrect.txt")
+    # files_to_test.append("input/input_test_4_spurious.txt")
+    # files_to_test.append("input/input_test_5_misc.txt")
+    # files_to_test.append("input/input_test_6_misc.txt")
+    # #
+    # for file in files_to_test:
+    #     print("Starting the program for file: " + file)
+    #     run_analysis(file)
+    #     # run_analysis_old(file)
 
     # print("Testing 'create_tag_list_by':")
     # print("-----------------------------")
