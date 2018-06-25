@@ -1,3 +1,6 @@
+import copy
+import re
+
 CORP_NAME = "organized_corp"
 NEW_NAME_SUF = "_new_feature.txt"
 FILE_SUF = ".txt"
@@ -5,6 +8,11 @@ CURRENT_CORP = CORP_NAME + FILE_SUF
 NEW_LINE = "\n"
 NEW_SPOT = 1
 SEP = "\t\t"
+
+# Threshold for appearances in wiki-dictionary:
+THRESHOLD = 3
+
+PERSON_FUNCTION_WORDS = "dictionaries/Preson_Function_Words.txt"
 
 PUNCT_OR_WORD = 2
 
@@ -79,37 +87,58 @@ def is_end_feat(corpus_file_name):
     add_feature(corpus_file_name, corpus_file_name, is_end)
 
 
-# Dictionary feature - number of occurrences as a name in Wikipedia's person list
-def appearances_wikipedia_person_feature(corpus_file_name, wiki_persons_file_name):
+# Dictionary feature - number of occurrences in Wikipedia's list given as parameter 'wiki_file_name'
+# The function uses a threshold, where no' of appearances that is smaller then it - is regarded as 0.
+def appearances_wikipedia_feature_by_base_word(corpus_file_name, wiki_file_name):
+    print("appearances_wikipedia_person_feature...") # TODO - DELETE
     words_variations = []
+    # Creating lists of all possible base words for each word in the corpus:
     with open(corpus_file_name, "r", encoding="utf-8") as corp:
         for line in corp:
             if line != NEW_LINE:
                 words = line.split(SEP)
                 variations = create_words_from_delimiter(words[1])
-                words_variations.append([words[0]] + variations)
+                words_variations.append(variations)
+                # words_variations.append([words[0]] + variations)
             else:
                 words_variations.append([line])
         # lines = corp.readlines()
     # words = list(map(lambda s: s.split(SEP)[0], lines))
-    # print(words_variations)
-    with open(wiki_persons_file_name, "r", encoding="utf-8") as wiki:
+
+    # Creating lists of all words in the wikipedia tree:
+    with open(wiki_file_name, "r", encoding="utf-8") as wiki:
         wiki_lines = wiki.readlines()
     wiki_lines_stripped = list(map(lambda s: s.strip("\n").strip("\t"), wiki_lines))
     wiki_words_list = []
     for line in wiki_lines_stripped:
         wiki_words_list += line.split(" ")
+
+    # Creating lists of function words:
+    with open(PERSON_FUNCTION_WORDS, "r", encoding="utf-8") as functions_words_file:
+        functions_words = functions_words_file.readlines()
+        functions_words = list(map(lambda s: s.strip("\n").strip("\t"), functions_words))
+
+    # Searching if either of the base-words appear in the wikipedia tree (and is not a function word):
     occurrences = ["0"] * len(words_variations)
     for index, word_arr in enumerate(words_variations):
         counter = 0
         for wiki_word in wiki_words_list:
-            if wiki_word in word_arr:
+            if wiki_word in word_arr and wiki_word not in functions_words:
                 counter += 1
         occurrences[index] = str(counter)
-    # Checking which words got a positive counter
+        # if index % 200 == 0:                             # TODO - DELETE
+        #     print(str("{0:.2f}".format(index / len(words_variations)* 100)) + "%")  # TODO - DELETE
+    occurrences = [x if (int(x) > 3) else "0" for x in occurrences]
+
+    # Checking which words got a positive counter:
+    words_set = []
     for i, occ in enumerate(occurrences):
         if occ != "0":
-            print(words_variations[i])
+            if words_variations[i] not in words_set:
+                words_set.append(words_variations[i])
+                print(str(words_variations[i]) + " " + str(occ))
+
+    add_feature(corpus_file_name, corpus_file_name, occurrences)
 
 
 
@@ -290,6 +319,40 @@ def is_in_wiki_tree_feat(corpus_file_name, wiki_dic_name):
     return feat
 
 
+# TODO - TEMPORARILY HERE:
+# ------------------------
+# For wiki features we want to search all forms in base form of words
+def create_words_from_delimiter(word, delimiter="&"):
+    bad_inputs = ["\n", " ", "", ".", ",", "-", ":"]
+    if len(word) == 0 or word in bad_inputs:
+        return [word]
+    # Finding all the occurrences of the delimiter in the word
+    delim_indices = list(map(int, [m.start() for m in re.finditer(delimiter, word)]))
+    if len(delim_indices) == 0:
+        return [word]
+    l1 = word.split(delimiter)
+    l2 = [x[0:-1] for x in l1]
+    l2[-1] = copy.deepcopy(l1[-1])
+    if delim_indices[-1] == len(word) - 1:
+        l1.pop()
+        l2.pop()
+    all_lists = []
+    for i in range(len(l1)):
+        all_lists.append([l1[i], l2[i]])
+
+    r = [[]]
+    for x in all_lists:
+        t = []
+        for y in x:
+            for i in r:
+                t.append(i + [y])
+        r = t
+    res = []
+    for tup in r:
+        res.append("".join(tup))
+    return res[0:len(r)//2]
+
+
 if __name__ == '__main__':
 
     # # Adding a wiki-person feature
@@ -298,5 +361,13 @@ if __name__ == '__main__':
     # # Adding a wiki-location Unigram feature
     # is_wikipedia_location_unigram_feature("organized_corp_test.txt", "wikiTreeConstructions_filtered.txt")
 
-    # Adding a wiki-location Bigram feature
-    is_wikipedia_location_bigram_feature("‏‏organized_corp_test_small.txt", "‏‏wikiTreeConstructions_test_small.txt") # TODO - UNFINISHED FUNCTION!!!!
+    # # Adding a wiki-location Bigram feature
+    # is_wikipedia_location_bigram_feature("‏‏organized_corp_test_small.txt", "‏‏wikiTreeConstructions_test_small.txt") # TODO - UNFINISHED FUNCTION!!!!
+
+
+    # Debug - Running it to see which words are distracting:
+    is_begin_feat("organized_corp_ORIGINAL_fixed.txt")
+    is_end_feat("organized_corp_ORIGINAL_fixed.txt")
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreePerson_filtered.txt")
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreeConstructions_filtered.txt")
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreeCompany_filtered.txt")
