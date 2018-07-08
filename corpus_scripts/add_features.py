@@ -15,10 +15,12 @@ THRESHOLD = 3
 PERSON_FUNCTION_WORDS = "dictionaries/Preson_Function_Words.txt"
 CONSTRUCT_FUNCTION_WORDS = "dictionaries/Construction_Function_Words.txt"
 COMPANY_FUNCTION_WORDS = "dictionaries/‏‏Company_Function_Words.txt"
+DATE_FUNCTION_WORDS = "dictionaries/Date_Function_Words.txt"
 
 PERSON_THRESHOLD = 3
 CONSTRUCT_THRESHOLD = 1
 COMPANY_THRESHOLD = 1
+DATE_THRESHOLD = 0
 
 PUNCT_OR_WORD = 2
 
@@ -374,6 +376,8 @@ if __name__ == '__main__':
     # Debug - Running it to see which words are distracting:
     is_begin_feat("organized_corp_ORIGINAL_fixed.txt")
     is_end_feat("organized_corp_ORIGINAL_fixed.txt")
-    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreePerson_filtered.txt", PERSON_FUNCTION_WORDS, PERSON_THRESHOLD)
-    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreeConstructions_filtered.txt", CONSTRUCT_FUNCTION_WORDS, CONSTRUCT_THRESHOLD)
-    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreeCompany_filtered.txt", COMPANY_FUNCTION_WORDS, COMPANY_THRESHOLD)
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "../wikipedia_tree_extractor/wikiTreePerson.txt", PERSON_FUNCTION_WORDS, PERSON_THRESHOLD)
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "../wikipedia_tree_extractor/wikiTreeConstructions.txt", CONSTRUCT_FUNCTION_WORDS, CONSTRUCT_THRESHOLD)
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "../wikipedia_tree_extractor/wikiTreeCompany.txt", COMPANY_FUNCTION_WORDS, COMPANY_THRESHOLD)
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "../wikipedia_tree_extractor/Date_Dictionary.txt", DATE_FUNCTION_WORDS, DATE_THRESHOLD)
+
