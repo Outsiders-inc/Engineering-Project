@@ -13,6 +13,12 @@ SEP = "\t\t"
 THRESHOLD = 3
 
 PERSON_FUNCTION_WORDS = "dictionaries/Preson_Function_Words.txt"
+CONSTRUCT_FUNCTION_WORDS = "dictionaries/Construction_Function_Words.txt"
+COMPANY_FUNCTION_WORDS = "dictionaries/‏‏Company_Function_Words.txt"
+
+PERSON_THRESHOLD = 3
+CONSTRUCT_THRESHOLD = 1
+COMPANY_THRESHOLD = 1
 
 PUNCT_OR_WORD = 2
 
@@ -89,7 +95,7 @@ def is_end_feat(corpus_file_name):
 
 # Dictionary feature - number of occurrences in Wikipedia's list given as parameter 'wiki_file_name'
 # The function uses a threshold, where no' of appearances that is smaller then it - is regarded as 0.
-def appearances_wikipedia_feature_by_base_word(corpus_file_name, wiki_file_name):
+def appearances_wikipedia_feature_by_base_word(corpus_file_name, wiki_file_name, func_words_file_name, threshold):
     print("appearances_wikipedia_person_feature...") # TODO - DELETE
     words_variations = []
     # Creating lists of all possible base words for each word in the corpus:
@@ -114,7 +120,7 @@ def appearances_wikipedia_feature_by_base_word(corpus_file_name, wiki_file_name)
         wiki_words_list += line.split(" ")
 
     # Creating lists of function words:
-    with open(PERSON_FUNCTION_WORDS, "r", encoding="utf-8") as functions_words_file:
+    with open(func_words_file_name, "r", encoding="utf-8") as functions_words_file:
         functions_words = functions_words_file.readlines()
         functions_words = list(map(lambda s: s.strip("\n").strip("\t"), functions_words))
 
@@ -128,7 +134,7 @@ def appearances_wikipedia_feature_by_base_word(corpus_file_name, wiki_file_name)
         occurrences[index] = str(counter)
         # if index % 200 == 0:                             # TODO - DELETE
         #     print(str("{0:.2f}".format(index / len(words_variations)* 100)) + "%")  # TODO - DELETE
-    occurrences = [x if (int(x) > 3) else "0" for x in occurrences]
+    occurrences = [x if (int(x) > threshold) else "0" for x in occurrences]
 
     # Checking which words got a positive counter:
     words_set = []
@@ -368,6 +374,6 @@ if __name__ == '__main__':
     # Debug - Running it to see which words are distracting:
     is_begin_feat("organized_corp_ORIGINAL_fixed.txt")
     is_end_feat("organized_corp_ORIGINAL_fixed.txt")
-    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreePerson_filtered.txt")
-    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreeConstructions_filtered.txt")
-    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreeCompany_filtered.txt")
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreePerson_filtered.txt", PERSON_FUNCTION_WORDS, PERSON_THRESHOLD)
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreeConstructions_filtered.txt", CONSTRUCT_FUNCTION_WORDS, CONSTRUCT_THRESHOLD)
+    appearances_wikipedia_feature_by_base_word("organized_corp_ORIGINAL_fixed.txt", "wikiTreeCompany_filtered.txt", COMPANY_FUNCTION_WORDS, COMPANY_THRESHOLD)
